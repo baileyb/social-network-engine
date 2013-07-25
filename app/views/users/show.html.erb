@@ -1,0 +1,52 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="usersShow">
+<% end %>
+
+<% content_for :header do %>
+	<%= link_to "", posts_path, :class => "header-icon-close", :data => { :role => "button", :transition => "slidedown" } %>	
+  <h3>Profile</h3>	
+<% end %>
+
+<% content_for :content do %>
+
+	<div class="feed-item" style="min-width:300px;">
+		<div class="feed-header">
+		
+			<div class="user-left">
+				<img src="<%= @path %><%= @user.profile_pic %>" class="author-img"/>
+				<h2 class="profile-name"><%= @user.name %></h2>
+			</div>
+			
+			<% unless current_user == @user%>
+				<div class="user-right-profile">
+					<% unless current_user.friends.include? @user%>
+						<%= link_to_function "Follow", "followUser(#{@user.id}, #{current_user.id})", :class => 'addUserButton', :name => "followUser#{@user.id}"  %>
+						<%= link_to_function "Remove", "removeUser(#{@user.id}, #{current_user.id})", :class => 'disabled removeUserButton', :name => "removeUser#{@user.id}"  %>
+					<% else %>
+						<%= link_to_function "Follow", "followUser(#{@user.id}, #{current_user.id})", :class => 'addUserButton disabled', :name => "followUser#{@user.id}"  %>
+						<%= link_to_function "Remove", "removeUser(#{@user.id}, #{current_user.id})", :class => 'removeUserButton', :name => "removeUser#{@user.id}" %>
+					<% end %>
+				</div>
+			<% end %>	
+					
+			<div class="profile-container" data-role="navbar">
+				<ul>
+					<li><%= link_to "Posts", users_posts_path, :remote => true, :data => {:role => "button", :icon => "posts", :iconpos => "top"}, :class => 'userPostsButton ui-btn-active', :id => @user.id %></li>
+					<li><%= link_to "Following", users_followings_path, :remote => true, :data => {:role => "button", :icon => "friends", :iconpos => "top"}, :class => 'userFollowingsButton', :id => @user.id %></li>
+					<li><%= link_to "Followers", users_followers_path, :remote => true, :data => {:role => "button", :icon => "friends", :iconpos => "top"}, :class => 'userFriendsButton', :id => @user.id %></li>
+					<li><%= link_to "Orgs", users_organizations_path, :remote => true, :data => {:role => "button", :icon => "organizations", :iconpos => "top"}, :class => 'userOrganizationsButton', :id => @user.id %></li>
+				</ul>
+			</div>	
+			
+		</div>
+	</div>	
+	<div class="userData" data-token="<%= @token %>" data-theme="a">
+		<% if !@posts.nil? && @posts.length > 0 %>
+			<% @posts.each do |post| %>
+				<%= render "partials/feed_item", :post => post, :path => @path %>
+			<% end %>
+		<% else %>	
+			<%= @user.name %> has no posts.
+		<% end %>	
+	</div>
+<% end %>

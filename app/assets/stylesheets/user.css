@@ -1,0 +1,115 @@
+
+.profile-name {
+	font-size: 1.25em;
+	margin-left: 68px;
+	padding-top: 10px;
+	color: #333;
+	text-shadow: none;
+}
+
+.profile-container {
+	padding:10px;
+}
+
+.ui-icon-friends{
+	background: url("glyphicons/glyphicons_043_group.png");
+	background-size: 20px 20px;
+	border-radius: 0px;
+}
+
+.ui-icon-organizations{
+	background: url("glyphicons/glyphicons_340_globe.png");
+	background-size: 20px 20px;
+	border-radius: 0px;
+}
+
+.ui-icon-posts{
+	background: url("glyphicons/glyphicons_158_show_lines.png");
+	background-size: 20px 20px;
+	border-radius: 0px;
+}
+
+.user-left {
+	margin-right:60px; 
+	display:inline-block;
+	max-width: 235px;
+}
+
+.user-right {
+	float:right;
+	width:60px;
+	margin-left:-100%;
+	padding-top:60px;	
+}
+
+.user-right-profile {
+	float:right;
+	width:60px;
+	margin-left:-100%;
+	padding-top:40px;	
+}
+
+.disabled {
+	display:none;
+}
+
+.removeUserButton {
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE;
+	background: url("glyphicons/glyphicons_007_user_remove.png") no-repeat 9px 9px;
+	border-radius:3px;
+	border: 1px solid #CCCCCC;
+	text-decoration:none;
+	padding: 34px 2px 0px;
+	color: #2F3E46 !important;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #FFFFFF;
+	font-size:10px;
+}
+.addUserButton {
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE;
+	background: url("glyphicons/glyphicons_006_user_add.png") no-repeat 8px 9px;
+	border-radius:3px;
+	border: 1px solid #CCCCCC;
+	text-decoration:none;
+	padding: 34px 2px 0px;
+	color: #2F3E46 !important;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #FFFFFF;
+	font-size:12.5px;
+}
+.removeOrganizationButton {
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE;
+	background: url("glyphicons/glyphicons_340_globe_remove.png") no-repeat 9px 9px;
+	border-radius:3px;
+	border: 1px solid #CCCCCC;
+	text-decoration:none;
+	padding: 34px 2px 0px;
+	color: #2F3E46 !important;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #FFFFFF;
+	font-size:10px;
+}
+.addOrganizationButton {
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE;
+	background: url("glyphicons/glyphicons_340_globe_add.png") no-repeat 10px 9px;
+	border-radius:3px;
+	border: 1px solid #CCCCCC;
+	text-decoration:none;
+	padding: 34px 2px 0px;
+	color: #2F3E46  !important;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #FFFFFF;
+	font-size:12.5px;
+}
+.ui-mini .userFollowingsButton .ui-btn-inner  {
+	font-size:9px;
+}
+.ui-mini .userFriendsButton  .ui-btn-inner {
+	font-size:9px;
+}
+.ui-mini .userOrganizationsButton .ui-btn-inner  {
+	font-size:9px;
+}
+.ui-mini .userPostsButton .ui-btn-inner {
+	font-size:9px;
+}

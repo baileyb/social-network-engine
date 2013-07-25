@@ -1,0 +1,13 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="done">
+<% end %>
+
+<%= content_for :content do %>
+	<h3 class="signup-header">New Account Sign Up</h3>
+	<h4 class="white-header">City of Palo Alto SSN</h4>
+	<hr />
+	<div class="signup">
+    <p>Thank you for creating a Palo Alto SSN account! Your information has been synched and you are now ready to participate in SSN.</p><br/>
+    <%= link_to "Go to SSN", :root, target: "_self", :data => { :role => 'button', :icon => 'arrow-r', :iconpos => 'right', :theme => 'b' } %>
+	</div>
+<% end %>

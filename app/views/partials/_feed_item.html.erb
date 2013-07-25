@@ -1,0 +1,21 @@
+<div class="feed-item">
+    <% if post.organization.nil? %>
+			<a href="<%= user_path(post.user) %>" class="feed-header">
+        <img src="<%= path %><%= post.user.profile_pic %>" class="author-img"/>
+        <h2 class="author-name"><%= post.user.name %></h2>
+    <% else %>
+			<a href="<%= organization_path(post.organization) %>" class="feed-header">
+        <img src="<%= path %><%= post.organization.profile_pic %>" class="author-img"/>
+        <h2 class="author-name"><%= post.organization.name %></h2>
+    <% end %>
+    <% if !post.city.nil? || !post.zipcode.nil? %>
+        <p class="post-time"><%= time_ago_in_words(post.created_at) %> ago
+          near <%= post.city %> <%= post.zipcode %></p>
+    <% else %>
+        <p class="post-time"><%= time_ago_in_words(post.created_at) %> ago</p>
+    <% end %>
+  </a>
+  <div class="feed-content">
+    <p class="feed-text"><%= post.text %></p>
+  </div>
+</div>

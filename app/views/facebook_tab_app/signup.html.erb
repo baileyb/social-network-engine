@@ -1,0 +1,19 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="signup">
+<% end %>
+
+<%= content_for :content do %>
+	<h3 class="signup-header">New Account Sign Up</h3>
+	<h4 class="white-header">City of Palo Alto SSN</h4>
+	<hr />
+	<div class="signup">
+		<p>The Palo Alto Survivable Social Network is an effort by the city to construct a social network that is usable during a disaster. Through SSN you'll be able to get status updates from the city, get updates from organizations, get health updates from the people you love, and connect with your neighbors to give and receive help during an emergency.</p>
+    <p>On the next page, we will ask for your permission to access some of your profile information. We ask for your basic data to customize your experience, your e-mail so we can create an SSN account, and what pages you manage so we can create organizations for you.
+	</div>
+	<div class="signup">
+		<%= link_to user_omniauth_authorize_path(:facebook, :state => "signup"), :class => 'facebook-btn', :rel => 'external', :data => { :role => 'button', :theme => 'f' } do %>
+			<span class="facebook-icon"></span>		
+			<p>Sign up with Facebook</p>
+		<% end %>
+	</div>
+<% end %>

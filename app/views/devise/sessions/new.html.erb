@@ -1,0 +1,40 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="deviseNew">
+<% end %>
+
+<%= content_for :content do %>
+	<h1>City of Palo Alto SSN :: Cool City Neighborhood</h1>
+	<h2 class="login-header">Sign In</h2>
+	<div class="login"> 
+		<%= content_tag(:div, flash[:alert], :id => "flash-alert") unless flash[:alert].blank? %>	
+		<%= link_to user_omniauth_authorize_path(:facebook, :redirect_uri => "#{request.protocol}#{request.host_with_port}#{root_path}"), :class => 'facebook-btn', :rel => 'external', :data => { :role => 'button', :theme => 'f' } do %>
+			<span class="facebook-icon"></span>		
+			<p>Sign in with Facebook</p>
+		<% end %>	
+		<p>Or Using Your Local SSN Account</p>
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :data => { :ajax => 'false' }}) do |f| %>
+		    <div data-role="fieldcontain" class="ui-hide-label">
+		      <%= f.label :email %>
+		      <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+		    </div>
+		    <div data-role="fieldcontain" class="ui-hide-label">
+		      <%= f.label :password %>
+		      <%= f.password_field :password, :placeholder => "Password" %>
+		    </div>
+		    <% if devise_mapping.rememberable? -%>
+					<div data-role="fieldcontain" class="ui-hide-label">
+					  <input type="checkbox" name="user[remember_me]" id="user_remember_me" value="1"/>
+					  <label for="user_remember_me">Keep me signed in</label>
+					</div>
+		    <% end -%>
+		    <%= f.submit "Sign in", :id => 'loginFormSubmit', :data => { :role => 'button', :theme => 'b' }%>
+		<% end %>
+	</div>
+	<h2 class="login-header">Create New Account</h2>
+	<div class="login">
+		<%= link_to signup_path, :class => 'facebook-btn', :rel => 'external', :data => { :role => 'button', :theme => 'f' } do %>
+			<span class="facebook-icon"></span>		
+			<p>Sign up with Facebook</p>
+		<% end %>
+	</div>
+<% end %>

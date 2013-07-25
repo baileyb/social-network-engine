@@ -1,0 +1,24 @@
+<div class="feed-item" <% if !feedItemId.nil? %> id="<%= feedItemId %><%= organization.id %>"<% end %>>
+	<div>
+		<div class="user-left">
+			<a href="<%= organization_path(organization) %>"class="feed-header">
+				<img src="<%= path %><%= organization.profile_pic %>" class="author-img"/>
+				<h2 class="author-name"><%= organization.name %></h2>
+			</a>
+			<div class="feed-content ">
+				<p class="feed-text">
+					&nbsp;
+				</p>
+			</div>
+		</div>
+			<div class="user-right">
+			<% unless current_user.organizations.include? organization%>
+				<%= link_to_function "Follow", "followOrganization(#{organization.id})", :class => 'addOrganizationButton', :name => "followOrganization#{organization.id}"  %>
+				<%= link_to_function "Remove", "removeOrganization(#{organization.id})", :class => 'disabled removeOrganizationButton', :name => "removeOrganization#{organization.id}"  %>			
+			<% else %>
+				<%= link_to_function "Follow", "followOrganization(#{organization.id})", :class => 'disabled addOrganizationButton', :name => "followOrganization#{organization.id}"  %>
+				<%= link_to_function "Remove", "removeOrganization(#{organization.id})", :class => 'removeOrganizationButton', :name => "removeOrganization#{organization.id}"  %>			
+			<% end %>	
+			</div>
+	</div>
+</div>

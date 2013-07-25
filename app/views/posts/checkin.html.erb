@@ -1,0 +1,22 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="postCheckin">
+<% end %>
+
+<% content_for :header do %>
+	<%= link_to "", posts_path, :class => "header-icon-close", :data => { :role => "button", :transition => "slidedown" } %>	
+  <h3>Status</h3>
+<% end %>
+
+<% content_for :content do %>
+	<div class="post-form">
+		<%= form_for @status, :url => {:controller => "status",:action => "create"}, :html => {:method => :post} do |f| %>
+			<%= f.hidden_field :latitude %>
+			<%= f.hidden_field :longitude %>
+			<%= f.hidden_field :status %>
+	  <% end %>
+	  <%= link_to "I'm OK", "#", :id => "submit_AllClear", :data => {:role => "button", :icon => "good", :iconpos => "top", :theme => "b" } %>
+		<%= link_to "Emergency", "#", :id => "submit_NeedHelp", :data => {:role => "button", :icon => "emergency", :iconpos => "top", :theme => "c" } %>
+		<%= link_to "Need Assistance", "#", :id => "submit_NeedAssistance", :data => {:role => "button", :icon => "assistance-needed", :iconpos => "top", :theme => "d" } %>
+	</div>
+  <%= javascript_include_tag "post/common", "post/checkin" %>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="feed-item">
+  <a href="<%= user_path(status.user) %>" class="feed-header">
+    <img src="<%= path %><%= status.user.profile_pic %>" class="author-img"/>
+    <h2 class="author-name"><%= status.user.name %></h2>
+    <% if !status.distance.nil? && !status.direction.nil? && !status.clear %>
+        <p class="post-time"><%= '%.2f' % status.distance %> miles
+          <%= status.direction %></p>
+    <% end %>
+    <% if status.status %>
+        <% if status.status == Post::ALL_CLEAR_STATUS %>
+            <div class="status">
+              <%= image_tag "glyphicons/glyphicons_193_circle_ok.png" %>
+            </div>
+            <a style="visibility: hidden" class="all-clear" data-role="button" data-theme="b" data-mini="true" data-inline="true">All Clear</a>
+        <% elsif status.status == Post::NEEDS_ASSISTANCE_STATUS %>
+            <div class="status">
+              <%= image_tag "glyphicons/glyphicons_196_circle_exclamation_mark.png" %>
+            </div>
+            <% if status.clear %>
+                <a data-action="all-clear" class="all-clear" data-role="button" data-theme="b" data-mini="true" data-inline="true">All Clear</a>
+            <% else %>
+                <a style="visibility: hidden" class="all-clear" data-role="button" data-theme="b" data-mini="true" data-inline="true">All Clear</a>
+            <% end %>
+        <% elsif status.status == Post::NEEDS_HELP_STATUS %>
+            <div class="status">
+              <%= image_tag "glyphicons/glyphicons_298_hospital.png" %>
+            </div>
+            <% if status.clear %>
+                <a data-action="all-clear" class="all-clear" data-role="button" data-theme="b" data-mini="true" data-inline="true">All Clear</a>
+            <% else %>
+                <a style="visibility: hidden" class="all-clear" data-role="button" data-theme="b" data-mini="true" data-inline="true">All Clear</a>
+            <% end %>
+        <% end %>
+    <% end %>
+  </a>
+    <% if status.status == Post::ALL_CLEAR_STATUS %>
+        <div class="feed-content-green">
+          <p class="feed-text">Everything is OK</p>
+        </div>
+    <% elsif status.status == Post::NEEDS_ASSISTANCE_STATUS %>
+        <div class="feed-content-yellow">
+          <p class="feed-text">Need Help ASAP</p>
+
+        </div>
+    <% elsif status.status == Post::NEEDS_HELP_STATUS %>
+        <div class="feed-content-red">
+          <p class="feed-text">Immediate Help Required</p>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,58 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="search">
+<% end %>
+
+<% content_for :header do %>
+		<%= link_to "", posts_path, :class => "header-icon-back", :data => { :role => "button" } %>
+    <h3>Search</h3>
+<% end %>
+<% content_for :content do %>
+    <div>
+      <%= form_tag search_path do %>
+          <%= text_field_tag 'q', @query, :placeholder => "Enter search here", :type => "search" %>
+          <%= hidden_field_tag 'type', @type %>
+          <%= submit_tag 'Search', :data => {:role => 'button', :theme => 'b'} %>
+      <% end %>
+      <% if not @results.nil? %>
+          <div data-role="navbar">
+            <ul>
+              <li><%= SearchResult::GetTypeLink(self, @type, SearchResult::Type::POST, @query) %></li>
+              <li><%= SearchResult::GetTypeLink(self, @type, SearchResult::Type::USER, @query) %></li>
+              <li><%= SearchResult::GetTypeLink(self, @type, SearchResult::Type::ORGANIZATION, @query) %></li>
+            </ul>
+          </div>
+      <% end %>
+    </div>
+		<br />
+    <% # Display results if a search has been made  %>
+    <% if not @results.nil? %>
+        <% # A search was done. Display results or sorry if none  %>
+        <% if @results.length > 0 %>
+            <% # Only show PAGE_SIZE results (there might be more for paging)  %>
+            <% @results.slice(0, SearchResult::PAGE_SIZE).each do |result| %>
+                <% # Find out what type of result this is and display that template  %>
+                <% if result[:type].to_i == SearchResult::Type::USER.to_i %>
+                    <%= render "partials/user_item", :user => result[:user], :path => "", :feedItemId => @feedItemId %>
+                <% elsif result[:type].to_i == SearchResult::Type::POST.to_i %>
+                    <%= render "partials/feed_item", :post => result[:post], :path => "" %>
+                <% elsif result[:type].to_i == SearchResult::Type::ORGANIZATION.to_i %>
+                    <%= render "partials/organization_item", :organization => result[:organization], :path => "", :feedItemId => @feedItemId %>
+                <% end %>
+            <% end %>
+            <% # Pagination controls %>
+            <% # If we are not at the first page, show "Previous"   %>
+            <div class="center">
+              <% if not @page_num.nil? and @page_num.to_i > 0 %>
+                  <%= link_to "Previous", search_path(:q => @query, :type => @type.to_s, :page => (@page_num.to_i - 1).to_s), :data => {:role => 'button', :icon => 'arrow-l', :iconpos => 'left', :theme => 'b', :inline => true} %>
+              <% end %>
+              <% if SearchResult::HasNext(@results) %>
+                  <%= link_to "Next", search_path(:q => @query, :type => @type.to_s, :page => (@page_num.to_i + 1).to_s), :data => {:role => 'button', :icon => 'arrow-r', :iconpos => 'right', :theme => 'b', :inline => true} %>
+              <% end %>
+            </div>
+        <% else %>
+            <div class="center">
+              <h3>Sorry, no results were found...</h3>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>

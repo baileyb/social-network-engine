@@ -1,0 +1,9 @@
+$(".organizationPostsButton").addClass("ui-btn-active");
+$(".organizationFriendsButton").removeClass("ui-btn-active");
+
+$(".followingsButton").addClass("ui-btn-active");
+<% if !@posts.nil? && @posts.length > 0%>
+$(".organizationData").html("<% @posts.each do |post| %><%= escape_javascript(render "partials/feed_item", :post => post, :path => @path) %><% end %>");
+<% else %>
+	$(".organizationData").html("<%= @organization.name %> has no posts.");
+<% end %>

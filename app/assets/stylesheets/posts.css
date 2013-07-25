@@ -1,0 +1,259 @@
+.header-icon-logout {
+    background: url("glyphicons/glyphicons_203_lock.png") center no-repeat;
+    background-size: 20px 20px;
+    height: 30px;
+}
+
+.header-icon-search {
+    background: url("glyphicons/glyphicons_027_search.png") center no-repeat;
+    background-size: 20px 20px;
+    height: 30px;
+}
+
+.header-icon-close {
+    background: url("glyphicons/glyphicons_207_remove_2.png") center no-repeat;
+    background-size: 15px 15px;
+    height: 30px;
+}
+
+.ui-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.ui-icon-status {
+    background: url("glyphicons/glyphicons_088_adress_book.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-check-in {
+    background: url("glyphicons/glyphicons_152_check.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-post {
+    background: url("glyphicons/glyphicons_244_conversation.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-profile {
+    background: url("glyphicons/glyphicons_003_user.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-settings {
+    background: url("glyphicons/glyphicons_136_cogwheel.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-picture {
+    background: url("glyphicons/glyphicons_011_camera.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-link {
+    background: url("glyphicons/glyphicons_050_link.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-good {
+    background: url("glyphicons/glyphicons_193_circle_ok.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-emergency {
+    background: url("glyphicons/glyphicons_298_hospital.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.ui-icon-assistance-needed {
+    background: url("glyphicons/glyphicons_196_circle_exclamation_mark.png");
+    background-size: 20px 20px;
+    border-radius: 0px;
+}
+
+.status-bar {
+    font-size: 1em;
+    color: white;
+    text-shadow: none;
+    padding-bottom: 5px;
+}
+
+.orange {
+    background-color: #D97236;
+}
+
+.gray {
+    background-color: #3D3536
+}
+
+.status-bar p {
+    float: left;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.status-bar a {
+    float: right;
+}
+
+.status-bar fieldset {
+    clear: both;
+    display: block;
+    padding-top: 10px;
+    border-radius: 0px;
+    margin-top: 10px;
+}
+
+.feed-item {
+    background: url("backgrounds/paper_fibers.png");
+    background-repeat: repeat;
+    border-radius: .3em;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 3px #555;
+}
+
+.feed-header {
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+.feed-header .author-img {
+    height: 60px;
+    width: 60px;
+    float: left;
+    margin-top: -5px;
+    margin-left: -5px;
+    border: 2px solid #EEE;
+    border-radius: 0.3em;
+    box-shadow: 1px 1px 3px #555;
+}
+
+.feed-header .author-name {
+    font-size: 1em;
+    margin-left: 68px;
+    padding-top: 10px;
+    color: #333;
+    text-shadow: none;
+}
+
+.feed-header .post-time {
+    font-size: 0.8em;
+    margin-right: 45px;
+    margin-left: 68px;
+    margin-top: -7px;
+    color: #999;
+    text-shadow: none;
+}
+
+.feed-content {
+    padding-top: 1px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.feed-content-red {
+    padding-top: 1px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    text-align: center;
+    text-shadow: none;
+    background-color: #c1272d;
+    font-size: 0.9em;
+    line-height: 0.5em;
+}
+
+.feed-content-green {
+    padding-top: 1px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    text-align: center;
+    text-shadow: none;
+    background-color: #006837;
+    font-size: 0.9em;
+    line-height: 0.5em;
+}
+
+.feed-content-yellow {
+    padding-top: 1px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    text-align: center;
+    text-shadow: none;
+    color: #222;
+    background-color: #ffcc33;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 0.5em;
+}
+
+.feed-content p {
+    font-size: 0.9em;
+    text-shadow: none;
+    color: #333;
+}
+
+.feed-header .status {
+    float: right;
+    margin-top: -52px;
+    padding-left: 15px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+
+.feed-header .status img {
+    height: 30px;
+    width: 30px;
+    float: right;
+    margin-top: 15px;
+    padding-left: 5px;
+}
+
+.feed-header .status p {
+    margin-right: 40px;
+    text-align: right;
+    font-size: 0.8em;
+    color: #333;
+    text-shadow: none;
+    padding-top: 4px;
+}
+
+.post-form {
+    background: url("backgrounds/paper_fibers.png");
+    background-repeat: repeat;
+    border-radius: .3em;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 3px #555;
+    padding: 10px;
+}
+
+/*overwrite absolute position*/
+a.filter {
+    position: static !important;
+    margin-left: 10px !important;
+}
+
+#geo-filter .ui-btn-corner-all {
+    -webkit-border-radius: 0.3em /*{global-radii-buttons}*/;
+    border-radius: 0.3em /*{global-radii-buttons}*/;
+}

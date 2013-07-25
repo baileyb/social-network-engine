@@ -1,0 +1,39 @@
+<% 
+	navbar = prefix + "_navbar"
+	changeBtn = prefix + "_change"
+	picklist = prefix + "_picklist"
+	name_label = prefix + "_label"
+	radio = prefix + "_radio"
+	
+	self_value = Post::POST_AS_SELF
+	self_id = prefix + "_" + Post::POST_AS_SELF	
+	self_label = prefix + "_" + Post::POST_AS_SELF + "_label"
+%>
+
+<% if current_user.organizations_managed.length != 0 %>
+	<div id="<%= navbar %>" class="ui-bar status-bar" data-selected="<%= post_as %>" data-self="<%= self_value %>">
+		<p id="<%= name_label %>"></p>
+		<%= link_to "Change", "", :id => changeBtn, :class => "ui-btn-right ui-icon-alt", :data => { :role => "button", :mini => "true", :icon => "arrow-d", :iconpos => "right" } %>
+		<fieldset data-role="controlgroup" id="<%= picklist %>" style="display: none">
+			<% if post_as == self_value %>
+				<input type="radio" name="<%= radio %>" id="<%= self_id %>" value="<%= self_value %>" checked="true">
+			<% else %>
+			  <input type="radio" name="<%= radio %>" id="<%= self_id %>" value="<%= self_value %>">
+			<% end %>
+			<label for="<%= self_id %>" id="<%= self_label %>" data-text="<%= current_user.name %>"><%= current_user.name %></label>
+			
+			<% current_user.organizations_managed.each do |org| %>
+				<% 
+					org_id = prefix + "_" + org.id.to_s 
+					org_label = prefix + "_" + org.id.to_s + "_label"				
+				%>
+				<% if post_as == org.id %>
+					<input type="radio" name="<%= radio %>" id="<%= org_id %>" value="<%= org.id %>" checked="true">
+				<% else %>
+					<input type="radio" name="<%= radio %>" id="<%= org_id %>" value="<%= org.id %>">
+				<% end %>
+				<label for="<%= org_id %>" id="<%= org_label %>" data-text="<%= org.name %>"><%= org.name %></label>
+			<% end %>
+		</fieldset>
+	</div>
+<% end %>

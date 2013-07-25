@@ -1,0 +1,10 @@
+<div>
+  <span id="token" style="display: none"><%= @token %></span>
+  <span id="last-token" style="display: none"><%= @last_token %></span>
+  <span id="max-distance" style="display: none"><%= @max_distance %></span>
+  <% if !@posts.nil? && @posts.length > 0 %>
+      <% @posts.each do |post| %>
+          <%= render "partials/feed_item", :post => post, :path => @path%>
+      <% end %>
+  <% end %>
+</div>

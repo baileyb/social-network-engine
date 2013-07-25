@@ -1,0 +1,46 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="loadOrganizations">
+<% end %>
+
+<%= content_for :content do %>
+	<h3 class="signup-header">New Account Sign Up</h3>
+	<h4 class="white-header">City of Palo Alto SSN</h4>
+	<hr />
+	<div class="signup">
+	  <p>We found that you are an administrator for some Facebook pages. Would you like to create these as Organizations
+	    in SSN? Organizations are groups like schools, churches, and citizen groups. They can share information with SSN
+	    users about the status of the organization or its members.</p>
+	  <% if @organizations.nil? or @organizations.length == 0 %>
+	      <% # This should never happen  %>
+	      <h4>No organizations to add yourself to</h4>
+	      <%= link_to "Continue", "/facebook_tab_app/done", :rel => "external", :data => {:role => 'button', :icon => 'arrow-r', :iconpos => 'right', :theme => 'b'} %>
+	  <% else %>
+	      <%= form_tag "/facebook_tab_app/load_organizations" do %>
+	          <fieldset data-role="controlgroup">
+	            <legend>Uncheck the organizations you don't want to create:</legend>
+	            <% @organizations.each do |org| %>
+	                <%
+	                   # Each textbox should have an ID of "org_<organization ID>"
+	                   org_id = "org_" + org.id.to_s
+	                %>
+	                <%
+	                   # We have two fields for the same element because unchecked
+	                   # elements don't return anything to the server. This
+	                   # implementation will return a 0 if unchecked and 1 if checked.
+	                %>
+	                <%= hidden_field_tag org_id, 0 %>
+	                <label for="<%= org_id %>">
+	                  <%= check_box_tag org_id, 1, true %>
+	                  <%= org.name %>
+	                  <% if org.is_city %>
+	                      <i>-&nbsp;(SSN City)</i>
+	                  <% end %>
+	                </label>
+	            <% end %>
+	          </fieldset>
+	          <%= hidden_field_tag "orgs_num", @organizations.length %>
+	          <%= submit_tag 'Continue', :data => {:role => 'button', :icon => 'arrow-r', :iconpos => 'right', :theme => 'b'} %>
+	      <% end %>
+	  <% end %>
+	</div>
+<% end %>

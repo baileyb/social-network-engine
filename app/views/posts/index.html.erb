@@ -1,0 +1,57 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="index">
+<% end %>
+
+<% content_for :header do %>
+  <div>
+    <!-- Header Left Button -->
+    <% if user_signed_in? %>
+      <%= link_to "", destroy_user_session_path, :class => "header-icon-logout", :method => "delete", :target => "_self", :data => { :role => "button", :inline => true }, :style => "top:-1px" %>
+    <% end %>
+
+    <!-- Selection middle -->
+    <div style="display:inline-block;top:8px"> 
+      <select id="select-filter" onchange="filterBy(this.options[this.selectedIndex].value)">
+        <option value="<%= PostsHelper::FilterType::ALL %>" <%= PostsHelper::IsSelected(PostsHelper::FilterType::ALL, @f) %>>All Posts</option>
+        <option value="<%= PostsHelper::FilterType::FOLLOWING %>" <%=  PostsHelper::IsSelected(PostsHelper::FilterType::FOLLOWING, @f) %>>Following</option>
+      </select>
+    </div>
+
+    <!-- Header Right Button -->
+    <%= link_to "", search_path, :class => "header-icon-search ui-btn-right", :style => "top:8px", :data => { :role => "button", :transition => "slide", :inline => true } %>
+
+    <% if @max_distance > 1 %>
+        <% display = 'block' %>
+    <% else %>
+        <% display = 'none' %>
+    <% end %>
+  </div>
+  <%= render "partials/geo_filter", :display => display, :max_distance => @max_distance %>
+<% end %>
+
+<% content_for :content do %>
+    <div id="posts" data-token="<%= @token %>" data-last-token="<%= @last_token %>" data-theme="a" name="postsName">
+    </div>
+<% end %>
+
+<% content_for :footer do %>
+	<div data-role="navbar">
+		<ul>
+			<li><%= link_to "Check-In", checkin_path, :data => { :role => "button", :icon =>"check-in", :iconpos => "top", :transition => "slideup" } %></li>
+			<li><%= link_to "Post", new_post_path, :data => { :role => "button", :icon =>"post", :iconpos => "top", :transition => "slideup" } %></li>
+            <li><%= link_to "Status", status_path, :data => { :role => "button", :icon =>"status", :iconpos => "top", :transition => "slideup", :id=>"status" } %></li>
+			<li><%= link_to "Profile", current_user, :data => { :role => "button", :icon =>"profile", :iconpos => "top", :transition => "slideup" } %></li>
+			<li><%= link_to "Settings", "#settingsDialog", :data => { :role => "button", :icon =>"settings", :iconpos => "top", :transition => "slideup" } %></li>
+		</ul>
+	</div>
+<% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag "pagination", "post/refresh", "post/common", "post/index" %>
+  <script language="javascript">
+    // Formats the URL and redirects.
+    function filterBy(filterFieldNum) {
+      window.location = window.location.protocol + "//" + window.location.host + "/?f=" + filterFieldNum;
+    }
+  </script>
+<% end %>

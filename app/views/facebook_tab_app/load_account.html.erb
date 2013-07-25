@@ -1,0 +1,70 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="loadAccount">
+<% end %>
+
+<%= content_for :content do %>
+	<h3 class="signup-header">New Account Sign Up</h3>
+	<h4 class="white-header">City of Palo Alto SSN</h4>
+	<hr />
+	<div class="signup">
+		<p>Welcome to the Cool City Neighborhood SSN node.  Please choose a password for your account.  Note that this password should <b>NOT</b> be the same as your Facebook password.</p><br/>
+    <%= form_for @user, :url => { :action => "load_account" } do |f| %>
+        <div id="error-explanation">
+          <% if @user.errors.any? %>
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+          <% end %>
+        </div>
+      <div>
+        Username: &nbsp;<b><%= @user.email %></b><br />
+      </div>
+      <div data-role="fieldcontain" class="ui-hide-label">
+        <%= f.label :password %>
+        <%= f.password_field :password, :autofocus => true, :placeholder => "Password", :id => "password-textbox" %>
+      </div>
+      <div data-role="fieldcontain" class="ui-hide-label">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, :placeholder => "Password Again", :id => "password-confirmation-textbox" %>
+      </div>
+      <%= f.submit "Continue", :data => { :role => 'button', :icon => 'arrow-r', :iconpos => 'right', :theme => 'b' }, :id => "submit-button", :onclick => "return validatePassword();" %>
+    <% end %>
+	</div>
+<% end %>
+
+<%= content_for :scripts do %>
+	<script type="text/javascript">
+		function validatePassword() {
+			var password = $("#password-textbox").val().trim();
+			var password_confirm = $("#password-confirmation-textbox").val().trim();
+			var errors = [];
+
+			// Length is okay
+			if (password.length < 8) {
+				errors.push("Password must be at least 8 characters long")
+			}
+
+			// Passwords match
+			if (password != password_confirm) {
+				errors.push("Password must match password confirmation")
+			}
+
+			// Display errors if they exist
+			if (errors.length > 0) {
+				var list = "<ul>";
+
+				for (var i = 0; i < errors.length; i++) {
+					list += "<li>" + errors[i] + "</li>";
+				}
+
+				list += "</ul>"
+				$("#error-explanation").empty().append($(list)).show();
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+<% end %>

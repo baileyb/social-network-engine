@@ -1,0 +1,8 @@
+$(".organizationPostsButton").removeClass("ui-btn-active");
+$(".organizationFriendsButton").addClass("ui-btn-active");
+
+<% if !@organization.users.nil? && @organization.users.length > 0 %>
+	$(".organizationData").html("<% @organization.users.each do |user| %><%= escape_javascript(render "partials/user_item", :user => user, :path => @path, :feedItemId => @feedItemId) %><% end %>");
+<% else %>
+	$(".organizationData").html("<%= @organization.name %> has no followers.");
+<% end %>

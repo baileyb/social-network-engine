@@ -1,0 +1,28 @@
+<div data-role="page" data-theme="a" id="index">
+
+  <% content_for :header do %>
+      <%= link_to "", posts_path, :class => "header-icon-close", :data => { :role => "button", :transition => "slidedown" } %>
+      <h3>User statuses</h3>
+  <% end %>
+
+<% content_for :content do %>
+      <div>
+        <%= form_for @status, :url => {:controller => "status",:action => "create"}, :html => {:method => :post, :id=>"status_form"} do |f| %>
+            <%= f.hidden_field :latitude %>
+            <%= f.hidden_field :longitude %>
+            <%= f.hidden_field :status %>
+        <% end %>
+      </div>
+
+      <% if !@statuses.nil? && @statuses.length > 0 %>
+          <% @statuses.each do |status| %>
+              <%= render "partials/checkin_item", :status => status, :path => @path %>
+          <% end %>
+      <% end %>
+<% end %>
+
+<% content_for :scripts do %>
+
+<% end %>
+
+ </div>

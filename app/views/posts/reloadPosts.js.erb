@@ -1,0 +1,4 @@
+<% if !@posts.nil? && @posts.length > 0 %>
+$("#posts").data('last-token', "<%= @last_token %>");
+$("[name='postsName']").last().html("<% @posts.each do |post| %><%= escape_javascript(render "partials/feed_item", :post => post, :path => @path) %><% end %>");
+<% end %>

@@ -1,0 +1,44 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="organizationsShow">
+<% end %>
+
+<% content_for :header do %>
+	<%= link_to "", posts_path, :class => "header-icon-close", :data => { :role => "button", :transition => "slidedown" } %>	
+  <h3>Organization Profile</h3>	
+<% end %>
+
+<% content_for :content do %>
+	<div class="feed-item" style="min-width:300px;">
+		<div class="feed-header">
+			<div class="user-left">
+				<img src="<%= @path %><%= @organization.profile_pic %>" class="author-img"/>
+				<h2 class="profile-name"><%= @organization.name %></h2>
+			</div>
+			<div class="user-right-profile">
+				<% unless current_user.organizations.include? @organization%>
+					<%= link_to_function "Follow", "followOrganization(#{@organization.id}, #{current_user.id})", :class => 'addOrganizationButton', :name => "followOrganization#{@organization.id}"  %>
+					<%= link_to_function "Remove", "removeOrganization(#{@organization.id}, #{current_user.id})", :class => 'disabled removeOrganizationButton', :name => "removeOrganization#{@organization.id}"  %>			
+				<% else %>
+					<%= link_to_function "Follow", "followOrganization(#{@organization.id}, #{current_user.id})", :class => 'disabled addOrganizationButton', :name => "followOrganization#{@organization.id}"  %>
+					<%= link_to_function "Remove", "removeOrganization(#{@organization.id}, #{current_user.id})", :class => 'removeOrganizationButton', :name => "removeOrganization#{@organization.id}"  %>			
+				<% end %>	
+			</div>
+				<div class="profile-container" data-role="navbar">
+					<ul>
+						<li><%= link_to "Posts", organizations_posts_path, :remote => true, :data => {:role => "button", :icon => "posts", :iconpos => "top"}, :class => 'organizationPostsButton ui-btn-active', :id => @organization.id %></li>
+						<li><%= link_to "Followers", organizations_followers_path, :remote => true, :data => {:role => "button", :icon => "friends", :iconpos => "top"}, :class => 'organizationFriendsButton', :id => @organization.id %></li>
+					</ul>
+			</div>			
+		</div>
+	</div>
+
+	<div class="organizationData" data-token="<%= @token %>" data-theme="a">
+		<% if !@posts.nil? && @posts.length > 0 %>
+			<% @posts.each do |post| %>
+				<%= render "partials/feed_item", :post => post, :path => @path %>
+			<% end %>
+		<% else %>	
+			<%= @organization.name %> has no posts.
+		<% end %>	
+	</div>
+<% end %>

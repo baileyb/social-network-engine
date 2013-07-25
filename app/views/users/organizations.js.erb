@@ -1,0 +1,10 @@
+$(".userPostsButton").removeClass("ui-btn-active");
+$(".userFollowingsButton").removeClass("ui-btn-active");
+$(".userFriendsButton").removeClass("ui-btn-active");
+$(".userOrganizationsButton").addClass("ui-btn-active");
+
+<% if !@user.organizations.nil? && @user.organizations.length > 0 %>
+$(".userData").html("<% @user.organizations.each do |organization| %><%= escape_javascript(render "partials/organization_item", :organization => organization, :path => @path, :feedItemId => @feedItemId) %><% end %>");
+<% else %>
+	$(".userData").html("<%= @user.name %> is not following or associated with any organizations.");
+<% end %>

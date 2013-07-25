@@ -1,0 +1,10 @@
+$(".userPostsButton").removeClass("ui-btn-active");
+$(".userFollowingsButton").removeClass("ui-btn-active");
+$(".userFriendsButton").addClass("ui-btn-active");
+$(".userOrganizationsButton").removeClass("ui-btn-active");
+
+<% if !@user.followers.nil? && @user.followers.length > 0 %>
+	$(".userData").html("<% @user.followers.each do |follower| %><%= escape_javascript(render "partials/user_item", :user => follower, :path => @path, :feedItemId => @feedItemId) %><% end %>");
+<% else %>
+	$(".userData").html("<%= @user.name %> has no followers.");
+<% end %>

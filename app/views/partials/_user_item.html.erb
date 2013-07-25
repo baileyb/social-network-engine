@@ -1,0 +1,27 @@
+<div class="feed-item" style="min-width:300px;" <% if !feedItemId.nil? %> id="<%= feedItemId %><%= user.id %>"<% end %>>
+	<div>
+		<div class="user-left">
+			<a href="<%= user_path(user) %>" class="feed-header">
+				<img src="<%= path %><%= user.profile_pic %>" class="author-img"/>
+
+				<h2 class="author-name"><%= user.name %></h2>
+			</a>
+			<div class="feed-content">
+				<p class="feed-text">
+					&nbsp;
+				</p>
+			</div>
+		</div>
+		<% unless current_user == user%>
+			<div class="user-right">
+				<% unless current_user.friends.include? user%>
+					<%= link_to_function "Follow", "followUser(#{user.id})", :class => 'addUserButton', :name => "followUser#{user.id}"  %>
+					<%= link_to_function "Remove", "removeUser(#{user.id})", :class => 'disabled removeUserButton', :name => "removeUser#{user.id}"  %>
+				<% else %>
+					<%= link_to_function "Follow", "followUser(#{user.id})", :class => 'addUserButton disabled', :name => "followUser#{user.id}"  %>
+					<%= link_to_function "Remove", "removeUser(#{user.id})", :class => 'removeUserButton', :name => "removeUser#{user.id}" %>
+				<% end %>
+			</div>
+		<% end %>			
+	</div>
+</div>

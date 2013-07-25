@@ -1,0 +1,23 @@
+<% content_for :page do %>
+		<div data-role="page" data-theme="a" id="postNew">
+<% end %>
+
+<% content_for :header do %>
+	<%= link_to "", posts_path, :class => "header-icon-close", :data => { :role => "button", :transition => "slidedown" } %>	
+  <h3>Add New Post</h3>	
+	<%= render "post_as", :prefix => "newPost", :post_as => @post_as %>
+<% end %>
+
+<% content_for :content do %>
+	<div class="post-form">
+		<%= form_for @post, :url => {:action => "create"}, :html => { :method => :post, :data => { :ajax => "false" }} do |f| %>
+			<%= f.hidden_field :latitude %>
+			<%= f.hidden_field :longitude %>
+			<%= f.hidden_field :text %>
+			<%= f.hidden_field :status, :value => "false" %>
+			<%= text_area_tag "new_post_text", "", :placeholder => "What's happening?" %>
+	  <% end %>
+	  <%= link_to "Post", "#", :id => "submit_NewPost", :data => {:role => "button", :theme => "b"} %></li>
+	</div>
+  <%= javascript_include_tag "post/common","post/new" %>
+<% end %>
